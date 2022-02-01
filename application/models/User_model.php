@@ -21,4 +21,17 @@ class User_model extends CI_Model
 
 		return $this->db->get();
 	}
+
+	public function create($request)
+	{
+		$data = [
+			'name' => $request['name'],
+			'username' => $request['username'],
+			'password' => sha1($request['password']),
+			'address' => $request['address'] ?: null,
+			'level' => $request['level']
+		];
+
+		$this->db->insert('users', $data);
+	}
 }
