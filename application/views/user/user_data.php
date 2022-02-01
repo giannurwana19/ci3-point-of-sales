@@ -40,8 +40,12 @@
 							<td><?= $user->address ?></td>
 							<td><?= $user->level == 1 ? 'admin' : 'kasir'; ?></td>
 							<td>
-								<a href="<?= site_url('user/edit'); ?>" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i> Edit</a>
-								<a href="<?= site_url('user/delete'); ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Delete</a>
+								<a href="<?= site_url("user/edit/$user->user_id") ?>" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i> Edit</a>
+
+								<form action="<?= site_url("user/delete/$user->user_id") ?>" method="POST" style="display: inline;">
+									<input type="hidden" name="user_id" value="<?= $user->user_id ?>">
+									<button class="btn btn-danger btn-xs" onclick="return confirm('Hapus user?')"><i class="fa fa-trash"></i> Delete</button>
+								</form>
 							</td>
 						</tr>
 					<?php endforeach; ?>

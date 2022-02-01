@@ -40,6 +40,29 @@ class User extends CI_Controller
 		}
 	}
 
+	public function edit($id)
+	{
+	}
+
+	public function delete($id)
+	{
+		if ($this->input->method() == 'post') {
+			$this->user_model->delete($id);
+
+			if ($this->db->affected_rows() > 0) {
+				echo "<script>
+				alert('Data berhasil dihapus');
+				window.location.href = '" . site_url('user') . "'</script>";
+			} else {
+				echo "<script>
+				alert('Data user gagal dihapus');
+				window.location.href = '" . site_url('user') . "'</script>";
+			}
+		} else {
+			show_404();
+		}
+	}
+
 	private function _validate()
 	{
 		$this->form_validation->set_rules('name', 'Name', 'required|min_length[3]');

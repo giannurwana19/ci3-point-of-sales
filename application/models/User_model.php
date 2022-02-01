@@ -34,4 +34,9 @@ class User_model extends CI_Model
 
 		$this->db->insert('users', $data);
 	}
+
+	public function delete($id)
+	{
+		$this->db->delete('users', ['user_id' => $id]);
+	}
 }
