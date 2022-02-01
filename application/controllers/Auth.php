@@ -11,6 +11,7 @@ class Auth extends CI_Controller
 
 	public function login()
 	{
+		check_already_login();
 		$this->load->view('login');
 	}
 
@@ -39,6 +40,13 @@ class Auth extends CI_Controller
 				window.location.href = '" . site_url('auth/login') . "'</script>";
 			}
 		}
+	}
+
+	public function logout()
+	{
+		$userdata = ['user_id', 'level'];
+		$this->session->unset_userdata($userdata);
+		redirect('auth/login');
 	}
 }
 
