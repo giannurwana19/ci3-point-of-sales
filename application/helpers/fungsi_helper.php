@@ -19,3 +19,12 @@ function check_not_login()
 		redirect('auth/login');
 	}
 }
+
+function check_admin()
+{
+	$CI = &get_instance();
+
+	if ($CI->fungsi->user_login()->level != 1) {
+		redirect('dashboard');
+	}
+}

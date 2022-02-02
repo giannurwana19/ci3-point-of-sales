@@ -192,7 +192,7 @@
 						</ul>
 					</li>
 
-					<?php if ($this->session->userdata('level') == 1) : ?>
+					<?php if ($this->fungsi->user_login()->level == 1) : ?>
 						<li class="header">SETTINGS</li>
 						<li><a href="<?= site_url('user'); ?>"><i class="fa fa-user"></i> <span>Users</span></a></li>
 					<?php endif; ?>
