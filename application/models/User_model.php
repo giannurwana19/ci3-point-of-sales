@@ -35,8 +35,35 @@ class User_model extends CI_Model
 		$this->db->insert('users', $data);
 	}
 
+	public function update($id, $request)
+	{
+		$data = [
+			'name' => $request['name'],
+			'username' => $request['username'],
+			'address' => $request['address'] ?: null,
+			'level' => $request['level']
+		];
+
+		if (isset($request['password'])) {
+			$data['password'] = sha1($request['password']);
+		}
+
+		$this->db->update(
+			'users',
+			$data,
+			['user_id' => $id]
+		);
+	}
+
 	public function delete($id)
 	{
 		$this->db->delete('users', ['user_id' => $id]);
+	}
+
+	public function check_username($request)
+	{
+		return $this->db->where('username', $request['username'])
+			->where('user_id !=', $request['user_id'])
+			->get('users');
 	}
 }
