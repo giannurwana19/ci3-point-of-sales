@@ -28,3 +28,19 @@ function check_admin()
 		redirect('dashboard');
 	}
 }
+
+function response_message($url, $message)
+{
+	$CI = &get_instance();
+	$url = site_url($url);
+
+	if ($CI->db->affected_rows() > 0) {
+		echo "<script>
+				alert('Data berhasil $message');
+				window.location.href = '" . $url . "'</script>";
+	} else {
+		echo "<script>
+				alert('Data gagal dihapus');
+				window.location.href = '" . $url . "'</script>";
+	}
+}

@@ -15,7 +15,7 @@
 		<div class="box-header">
 			<h3 class="box-title">All Supplier</h3>
 			<div class="pull-right">
-				<a href="<?= site_url('supplier/create'); ?>" class="btn btn-primary btn-sm"><i class="fa fa-user-plus"></i> Add Supplier</a>
+				<a href="<?= site_url('supplier/create'); ?>" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Add Supplier</a>
 			</div>
 		</div>
 		<div class="box-body">

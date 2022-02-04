@@ -18,10 +18,42 @@ class Supplier extends CI_Controller
 
 	public function create()
 	{
+		$supplier = new stdClass();
+		$supplier->supplier_id = null;
+		$supplier->name = null;
+		$supplier->phone = null;
+		$supplier->address = null;
+		$supplier->description = null;
+
+		$data['supplier'] = $supplier;
+		$data['page'] = 'add';
+
+		$this->template->load('template', 'supplier/supplier_form', $data);
 	}
 
-	public function edit()
+	public function proccess()
 	{
+		$post = $this->input->post(null, true);
+
+		if (isset($post['add'])) {
+			$this->supplier_model->create($post);
+
+			response_message('supplier', 'ditambah');
+		} else if (isset($post['edit'])) {
+			$this->supplier_model->update($post['supplier_id'], $post);
+
+			response_message('supplier', 'diubah');
+		} else {
+			show_404();
+		}
+	}
+
+	public function edit($id)
+	{
+		$data['supplier'] = $this->supplier_model->get($id)->row();
+		$data['page'] = 'edit';
+
+		$this->template->load('template', 'supplier/supplier_form', $data);
 	}
 
 	public function delete($id)
@@ -34,7 +66,7 @@ class Supplier extends CI_Controller
 				window.location.href = '" . site_url('supplier') . "'</script>";
 		} else {
 			echo "<script>
-				alert('Data user gagal dihapus');
+				alert('Data gagal dihapus');
 				window.location.href = '" . site_url('supplier') . "'</script>";
 		}
 	}
