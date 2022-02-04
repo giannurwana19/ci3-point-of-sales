@@ -30,7 +30,7 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-green sidebar-mini">
 	<!-- Site wrapper -->
 	<div class="wrapper">
 
@@ -165,8 +165,8 @@
 							<span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
 						</a>
 						<ul class="treeview-menu">
-							<li><a href="#"><i class="fa fa-circle-"></i> Categories</a></li>
-							<li><a href="#"><i class="fa fa-circle-"></i> Units</a></li>
+							<li><a href="<?= site_url('category') ?>"><i class="fa fa-circle-"></i> Categories</a></li>
+							<li><a href="<?= site_url('unit') ?>"><i class="fa fa-circle-"></i> Units</a></li>
 							<li><a href="#"><i class="fa fa-circle-"></i> Items</a></li>
 						</ul>
 					</li>
