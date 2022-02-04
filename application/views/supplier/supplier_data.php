@@ -19,7 +19,7 @@
 			</div>
 		</div>
 		<div class="box-body">
-			<table class="table table-bordered table-hover table-responsive">
+			<table id="datatable" class="table table-bordered table-hover table-responsive">
 				<thead>
 					<tr>
 						<th style="width: 40px">#</th>
