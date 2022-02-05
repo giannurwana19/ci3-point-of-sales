@@ -24,8 +24,13 @@
 				<thead>
 					<tr>
 						<th style="width: 40px">#</th>
+						<th>Barcode</th>
 						<th>Name</th>
-						<th>name</th>
+						<th>Category</th>
+						<th>Unit</th>
+						<th>Stock</th>
+						<th>Price</th>
+						<th>Actions</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -33,7 +38,12 @@
 					<?php foreach ($items->result() as $item) : ?>
 						<tr>
 							<td><?= $no++ ?></td>
+							<td><?= $item->barcode ?></td>
 							<td><?= $item->name ?></td>
+							<td><?= $item->category_name ?></td>
+							<td><?= $item->unit_name ?></td>
+							<td><?= $item->stock ?></td>
+							<td><?= $item->price ?></td>
 							<td>
 								<a href="<?= site_url("item/edit/$item->item_id") ?>" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i> Edit</a>
 

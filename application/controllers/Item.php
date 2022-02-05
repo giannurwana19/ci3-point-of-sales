@@ -47,17 +47,26 @@ class Item extends CI_Controller
 		$post = $this->input->post(null, true);
 
 		if (isset($post['add'])) {
-			$this->item_model->create($post);
-
-			$this->session->set_flashdata('success', 'Data berhasil disimpan');
-			redirect('item');
+			if ($this->item_model->check_barcode($post['barcode'])->num_rows() > 0) {
+				$this->session->set_flashdata('error', "Barcode {$post['barcode']} sudah dipakai barang lain");
+				redirect('item/create');
+			} else {
+				$this->item_model->create($post);
+			}
 		} else if (isset($post['edit'])) {
-			$this->item_model->update($post['item_id'], $post);
-
-			$this->session->set_flashdata('success', 'Data berhasil diubah');
-			redirect('item');
+			if ($this->item_model->check_barcode($post['barcode'], $post['item_id'])->num_rows() > 0) {
+				$this->session->set_flashdata('error', "Barcode {$post['barcode']} sudah dipakai barang lain");
+				redirect("item/edit/{$post['item_id']}");
+			} else {
+				$this->item_model->update($post['item_id'], $post);
+			}
 		} else {
 			show_404();
+		}
+
+		if ($this->db->affected_rows() > 0) {
+			$this->session->set_flashdata('success', 'Data berhasil disimpan');
+			redirect('item');
 		}
 	}
 
@@ -65,6 +74,16 @@ class Item extends CI_Controller
 	{
 		$data['item'] = $this->item_model->get($id)->row();
 		$data['page'] = 'edit';
+
+		$data['categories'] = $this->category_model->get()->result();
+
+		$units[null] = '-- Pilih --';
+		foreach ($this->unit_model->get()->result_array() as  $unit) {
+			$units[$unit['unit_id']] = $unit['name'];
+		};
+
+		$data['units'] = $units;
+		$data['selected_unit'] = $data['item']->unit_id;
 
 		$this->template->load('template', 'product/item/item_form', $data);
 	}
