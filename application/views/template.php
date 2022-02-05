@@ -135,7 +135,7 @@
 					</div>
 					<div class="pull-left info">
 						<p><?= $this->fungsi->user_login()->name; ?></p>
-						<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+						<a href="#"><i class="fa fa-circle-o text-success"></i> Online</a>
 					</div>
 				</div>
 				<!-- search form -->
@@ -152,24 +152,24 @@
 				<!-- sidebar menu: : style can be found in sidebar.less -->
 				<ul class="sidebar-menu" data-widget="tree">
 					<li class="header">MAIN NAVIGATION</li>
-					<li>
+					<li class="<?= active_class('dashboard') ? 'active' : null ?>">
 						<a href="<?= site_url('dashboard') ?>"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
 					</li>
-					<li>
+					<li class="<?= active_class('supplier') ? 'active' : null ?>">
 						<a href="<?= site_url('supplier') ?>"><i class="fa fa-truck"></i> <span>Suppliers</span></a>
 					</li>
-					<li>
+					<li class="<?= active_class('customer') ? 'active' : null ?>">
 						<a href="<?= site_url('customer') ?>"><i class="fa fa-users"></i> <span>Customers</span></a>
 					</li>
-					<li class="treeview">
+					<li class="treeview <?= active_class('category') || active_class('unit') || active_class('item') ? 'active' : null ?>">
 						<a href="#">
 							<i class="fa fa-archive"></i> <span>Products</span>
 							<span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
 						</a>
 						<ul class="treeview-menu">
-							<li><a href="<?= site_url('category') ?>"><i class="fa fa-circle-"></i> Categories</a></li>
-							<li><a href="<?= site_url('unit') ?>"><i class="fa fa-circle-"></i> Units</a></li>
-							<li><a href="#"><i class="fa fa-circle-"></i> Items</a></li>
+							<li class="<?= active_class('category') ? 'active' : null ?>"><a href="<?= site_url('category') ?>"><i class="fa fa-circle-o"></i> Categories</a></li>
+							<li class="<?= active_class('unit') ? 'active' : null ?>"><a href="<?= site_url('unit') ?>"><i class="fa fa-circle-o"></i> Units</a></li>
+							<li class="<?= active_class('items') ? 'active' : null ?>"><a href="<?= site_url('items') ?>"><i class="fa fa-circle-o"></i> Items</a></li>
 						</ul>
 					</li>
 					<li class="treeview">
@@ -178,9 +178,9 @@
 							<span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
 						</a>
 						<ul class="treeview-menu">
-							<li><a href="#"><i class="fa fa-circle-"></i> Sales</a></li>
-							<li><a href="#"><i class="fa fa-circle-"></i> Stock In</a></li>
-							<li><a href="#"><i class="fa fa-circle-"></i> Stock Out</a></li>
+							<li><a href="#"><i class="fa fa-circle-o-"></i> Sales</a></li>
+							<li><a href="#"><i class="fa fa-circle-o-"></i> Stock In</a></li>
+							<li><a href="#"><i class="fa fa-circle-o-"></i> Stock Out</a></li>
 						</ul>
 					</li>
 					<li class="treeview">
@@ -189,8 +189,8 @@
 							<span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
 						</a>
 						<ul class="treeview-menu">
-							<li><a href="#"><i class="fa fa-circle-"></i> Sales</a></li>
-							<li><a href="#"><i class="fa fa-circle-"></i> Stocks</a></li>
+							<li><a href="#"><i class="fa fa-circle-o-"></i> Sales</a></li>
+							<li><a href="#"><i class="fa fa-circle-o-"></i> Stocks</a></li>
 						</ul>
 					</li>
 

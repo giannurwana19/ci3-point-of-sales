@@ -44,3 +44,11 @@ function response_message($url, $message)
 				window.location.href = '" . $url . "'</script>";
 	}
 }
+
+
+function active_class($url)
+{
+	$CI = &get_instance();
+
+	return $CI->uri->segment(1) == $url;
+}
