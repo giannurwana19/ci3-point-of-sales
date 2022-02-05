@@ -169,7 +169,7 @@
 						<ul class="treeview-menu">
 							<li class="<?= active_class('category') ? 'active' : null ?>"><a href="<?= site_url('category') ?>"><i class="fa fa-circle-o"></i> Categories</a></li>
 							<li class="<?= active_class('unit') ? 'active' : null ?>"><a href="<?= site_url('unit') ?>"><i class="fa fa-circle-o"></i> Units</a></li>
-							<li class="<?= active_class('items') ? 'active' : null ?>"><a href="<?= site_url('items') ?>"><i class="fa fa-circle-o"></i> Items</a></li>
+							<li class="<?= active_class('item') ? 'active' : null ?>"><a href="<?= site_url('item') ?>"><i class="fa fa-circle-o"></i> Items</a></li>
 						</ul>
 					</li>
 					<li class="treeview">

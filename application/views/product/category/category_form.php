@@ -31,6 +31,12 @@
 							<?= form_error('name') ?>
 						</div>
 
+						<div class="form-group <?= form_error('name') ? 'has-error' : null ?>">
+							<label for="name">Name *</label>
+							<input type="text" name="name" value="<?= $category->name ?>" class="form-control" id="name" autofocus required>
+							<?= form_error('name') ?>
+						</div>
+
 						<button type="submit" name="<?= $page ?>" class="btn btn-primary"><i class="fa fa-paper-plane"></i> Save</button>
 						<button type="reset" class="btn btn-warning">Reset</button>
 				</div>
