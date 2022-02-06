@@ -1,5 +1,8 @@
 <?php
 
+use Dompdf\Dompdf;
+use Dompdf\Options;
+
 function check_already_login()
 {
 	$CI = &get_instance();
@@ -55,12 +58,18 @@ function active_class($url)
 function PDFGenerator($content, $filename, $paper, $orientation)
 {
 	// instantiate and use the dompdf class
-	$dompdf = new Dompdf\Dompdf();
+	$options = new Options();
+	$options->set('isRemoteEnabled', true);
+
+	$dompdf = new Dompdf($options);
+
+
+
+	$dompdf->parseDefaultView(true);
 	$dompdf->loadHtml($content);
 
 	// (Optional) Setup the paper size and orientation
 	$dompdf->setPaper($paper, $orientation);
-
 	// Render the HTML as PDF
 	$dompdf->render();
 

@@ -23,6 +23,7 @@
 			<img src="data:image/png;base64,<?= base64_encode($generator->getBarcode($item->barcode, $generator::TYPE_CODE_128)) ?>">
 			<br>
 			<div><?= $item->barcode ?></div>
+			<a href="<?= site_url("item/barcode_print/$item->item_id") ?>" target="_blank" class="btn btn-xs btn-success">Print <i class="fa fa-print"></i></a>
 		</div>
 	</div>
 
@@ -33,6 +34,7 @@
 		<div class="box-body">
 			<img src="<?= base_url("uploads/qrcode/$item->barcode.png") ?>" alt="oke">
 			<div><?= $item->barcode ?></div>
+			<a href="<?= site_url("item/qrcode_print/$item->item_id") ?>" target="_blank" class="btn btn-xs btn-success">Print <i class="fa fa-print"></i></a>
 		</div>
 	</div>
 </section>

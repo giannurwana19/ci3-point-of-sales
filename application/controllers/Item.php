@@ -170,6 +170,14 @@ class Item extends CI_Controller
 		PDFGenerator($content, "item-$item->barcode.pdf", 'A4', 'landscape');
 	}
 
+	public function qrcode_print($id)
+	{
+		$item = $this->item_model->get($id)->row();
+		$content = $this->load->view('product/item/qrcode_print', compact('item'), true);
+
+		PDFGenerator($content, "item-$item->barcode.pdf", 'A4', 'potrait');
+	}
+
 	private function config_upload()
 	{
 		$config['upload_path']          = './uploads/products';

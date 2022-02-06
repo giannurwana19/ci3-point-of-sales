@@ -42,7 +42,6 @@
 							<td>
 								<?= $item->barcode ?><br>
 								<a href="<?= site_url("item/barcode_qrcode/$item->item_id") ?>" class="btn btn-xs btn-default">Generate <i class="fa fa-barcode"></i></a><br>
-								<a href="<?= site_url("item/barcode_print/$item->item_id") ?>" target="_blank" class="btn btn-xs btn-success">Print <i class="fa fa-print"></i></a>
 							</td>
 							<td><?= $item->name ?></td>
 							<td><?= $item->category_name ?></td>
