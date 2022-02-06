@@ -45,10 +45,28 @@ function response_message($url, $message)
 	}
 }
 
-
 function active_class($url)
 {
 	$CI = &get_instance();
 
 	return $CI->uri->segment(1) == $url;
+}
+
+function PDFGenerator($content, $filename, $paper, $orientation)
+{
+	// instantiate and use the dompdf class
+	$dompdf = new Dompdf\Dompdf();
+	$dompdf->loadHtml($content);
+
+	// (Optional) Setup the paper size and orientation
+	$dompdf->setPaper($paper, $orientation);
+
+	// Render the HTML as PDF
+	$dompdf->render();
+
+	// Output the generated PDF to Browser
+	// Attachment 
+	// true: akan download. 
+	// false: preview di browser
+	$dompdf->stream($filename, ['Attachment' => false]);
 }

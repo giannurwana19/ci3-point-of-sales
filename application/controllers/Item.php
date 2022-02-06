@@ -147,14 +147,27 @@ class Item extends CI_Controller
 		$this->template->load('template', 'product/item/barcode_qrcode', $data);
 	}
 
-	public function qrcode()
+	public function coba_qrcode()
 	{
 		$writer = new Endroid\QrCode\Writer\PngWriter();
-		$qrCode = Endroid\QrCode\QrCode::create('Halo nama say gian nurwana');
+		$qrCode = Endroid\QrCode\QrCode::create('Halo Nama saya Gian Nurwana');
 		$result = $writer->write($qrCode);
 
 		header('Content-Type: ' . $result->getMimeType());
 		echo $result->getString();
+	}
+
+	public function barcode_print($id)
+	{
+		$item = $this->item_model->get($id)->row();
+		$generator = new Picqer\Barcode\BarcodeGeneratorPNG();
+		$writer = new Endroid\QrCode\Writer\PngWriter();
+		$qrCode = Endroid\QrCode\QrCode::create($item->barcode);
+		$result = $writer->write($qrCode);
+
+		$content = $this->load->view('product/item/barcode_print', compact('item', 'generator'), true);
+
+		PDFGenerator($content, "item-$item->barcode.pdf", 'A4', 'landscape');
 	}
 
 	private function config_upload()
