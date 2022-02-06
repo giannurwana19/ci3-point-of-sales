@@ -10,7 +10,7 @@ class Item_model extends CI_Model
 			category.name as category_name,
 			unit.name as unit_name'
 		);
-		$this->db->from('item');
+		$this->db->from('item')->order_by('barcode', 'ASC');
 		$this->db->join('category', 'item.category_id = category.category_id');
 		$this->db->join('unit', 'item.unit_id = unit.unit_id');
 
@@ -40,6 +40,7 @@ class Item_model extends CI_Model
 			'category_id' => $request['category_id'],
 			'unit_id' => $request['unit_id'],
 			'price' => $request['price'],
+			'image' => $request['image']
 		];
 
 		$this->db->insert('item', $data);

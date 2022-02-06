@@ -23,7 +23,7 @@
 			<div class="row">
 				<div class="col-md-4 col-md-offset-4">
 					<!-- <?php echo validation_errors(); ?> -->
-					<form action="<?= site_url('item/proccess') ?>" method="POST">
+					<form action="<?= site_url('item/proccess') ?>" enctype="multipart/form-data" method="POST">
 						<input type="hidden" name="item_id" value="<?= $item->item_id ?>">
 
 						<div class="form-group <?= form_error('barcode') ? 'has-error' : null ?>">
@@ -57,6 +57,12 @@
 							<label for="price">price *</label>
 							<input type="number" name="price" value="<?= $item->price ?>" class="form-control" id="price" required>
 							<?= form_error('price') ?>
+						</div>
+
+						<div class="form-group <?= form_error('image') ? 'has-error' : null ?>">
+							<label for="image">Image *</label>
+							<input type="file" name="image" value="<?= $item->image ?>" class="form-control" id="image">
+							<?= form_error('image') ?>
 						</div>
 
 						<button type="submit" name="<?= $page ?>" class="btn btn-primary"><i class="fa fa-paper-plane"></i> Save</button>

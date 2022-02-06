@@ -29,6 +29,7 @@
 						<th>Category</th>
 						<th>Unit</th>
 						<th>Stock</th>
+						<th>Image</th>
 						<th>Price</th>
 						<th>Actions</th>
 					</tr>
@@ -43,6 +44,7 @@
 							<td><?= $item->category_name ?></td>
 							<td><?= $item->unit_name ?></td>
 							<td><?= $item->stock ?></td>
+							<td><img src="<?= base_url("uploads/products/$item->image") ?>" width="100" alt=""></td>
 							<td><?= $item->price ?></td>
 							<td>
 								<a href="<?= site_url("item/edit/$item->item_id") ?>" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i> Edit</a>

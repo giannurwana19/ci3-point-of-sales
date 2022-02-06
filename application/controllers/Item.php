@@ -8,6 +8,7 @@ class Item extends CI_Controller
 		parent::__construct();
 		$this->load->model('item_model');
 		$this->load->model(['category_model', 'unit_model']);
+		$this->config_upload();
 	}
 
 	public function index()
@@ -26,6 +27,7 @@ class Item extends CI_Controller
 		$item->category_id = null;
 		$item->unit_id = null;
 		$item->price = null;
+		$item->image = null;
 
 		$data['item'] = $item;
 		$data['page'] = 'add';
@@ -51,6 +53,17 @@ class Item extends CI_Controller
 				$this->session->set_flashdata('error', "Barcode {$post['barcode']} sudah dipakai barang lain");
 				redirect('item/create');
 			} else {
+				if ($_FILES['image']['name']) {
+					if ($this->upload->do_upload('image')) {
+						$post['image'] = $this->upload->data('file_name');
+					} else {
+						$error = $this->upload->display_errors();
+						$this->session->set_flashdata('error', $error);
+
+						redirect('item/create');
+					}
+				}
+
 				$this->item_model->create($post);
 			}
 		} else if (isset($post['edit'])) {
@@ -96,5 +109,15 @@ class Item extends CI_Controller
 			$this->session->set_flashdata('success', 'Data berhasil dihapus');
 			redirect('item');
 		}
+	}
+
+	private function config_upload()
+	{
+		$config['upload_path']          = './uploads/products';
+		$config['allowed_types']        = 'jpg|png|jpeg';
+		$config['max_size']             = 1024;
+		$config['file_name']			= 'item-product-' . uniqid();
+
+		$this->load->library('upload', $config);
 	}
 }
