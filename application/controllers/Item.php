@@ -134,6 +134,14 @@ class Item extends CI_Controller
 		}
 	}
 
+	public function barcode_qrcode($id)
+	{
+		$data['item'] = $this->item_model->get($id)->row();
+		$data['generator'] = new Picqer\Barcode\BarcodeGeneratorPNG();
+
+		$this->template->load('template', 'product/item/barcode_qrcode', $data);
+	}
+
 	private function config_upload()
 	{
 		$config['upload_path']          = './uploads/products';

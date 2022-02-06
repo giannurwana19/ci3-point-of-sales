@@ -39,7 +39,10 @@
 					<?php foreach ($items->result() as $item) : ?>
 						<tr>
 							<td><?= $no++ ?></td>
-							<td><?= $item->barcode ?></td>
+							<td>
+								<?= $item->barcode ?><br>
+								<a href="<?= site_url("item/barcode_qrcode/$item->item_id") ?>" class="btn btn-xs btn-default">Generate <i class="fa fa-barcode"></i></a>
+							</td>
 							<td><?= $item->name ?></td>
 							<td><?= $item->category_name ?></td>
 							<td><?= $item->unit_name ?></td>
