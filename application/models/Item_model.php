@@ -57,6 +57,10 @@ class Item_model extends CI_Model
 			'updated_at' => date('Y-m-d H:i:s')
 		];
 
+		if ($request['image']) {
+			$data['image'] = $request['image'];
+		}
+
 		$this->db->update('item', $data, compact('item_id'));
 	}
 

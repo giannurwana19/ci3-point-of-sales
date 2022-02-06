@@ -61,6 +61,11 @@
 
 						<div class="form-group <?= form_error('image') ? 'has-error' : null ?>">
 							<label for="image">Image *</label>
+							<?php if ($page == 'edit' && $item->image) : ?>
+								<div style="margin-bottom: 15px;">
+									<img src="<?= base_url("uploads/products/$item->image") ?>" width="100" alt="">
+								</div>
+							<?php endif; ?>
 							<input type="file" name="image" value="<?= $item->image ?>" class="form-control" id="image">
 							<?= form_error('image') ?>
 						</div>

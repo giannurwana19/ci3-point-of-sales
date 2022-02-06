@@ -71,6 +71,23 @@ class Item extends CI_Controller
 				$this->session->set_flashdata('error', "Barcode {$post['barcode']} sudah dipakai barang lain");
 				redirect("item/edit/{$post['item_id']}");
 			} else {
+				if ($_FILES['image']['name']) {
+					$old_image = $this->item_model->get($post['item_id'])->row()->image;
+
+					if ($old_image) {
+						unlink("uploads/products/$old_image");
+					}
+
+					if ($this->upload->do_upload('image')) {
+						$post['image'] = $this->upload->data('file_name');
+					} else {
+						$error = $this->upload->display_errors();
+						$this->session->set_flashdata('error', $error);
+
+						redirect("item/edit/{$post['item_id']}");
+					}
+				}
+
 				$this->item_model->update($post['item_id'], $post);
 			}
 		} else {
@@ -103,6 +120,12 @@ class Item extends CI_Controller
 
 	public function delete($id)
 	{
+		$old_image = $this->item_model->get($id)->row()->image;
+
+		if ($old_image) {
+			unlink("uploads/products/$old_image");
+		}
+
 		$this->item_model->delete($id);
 
 		if ($this->db->affected_rows() > 0) {
