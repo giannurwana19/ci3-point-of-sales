@@ -25,5 +25,14 @@
 			<div><?= $item->barcode ?></div>
 		</div>
 	</div>
+
+	<div class="box no-border">
+		<div class="box-header">
+			<h3 class="box-title">QR-Code Generator <i class="fa fa-qrcode"></i></h3>
+		</div>
+		<div class="box-body">
+			<img src="<?= base_url("uploads/qrcode/$item->barcode.png") ?>" alt="oke">
+			<div><?= $item->barcode ?></div>
+		</div>
 	</div>
 </section>

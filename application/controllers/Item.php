@@ -139,7 +139,22 @@ class Item extends CI_Controller
 		$data['item'] = $this->item_model->get($id)->row();
 		$data['generator'] = new Picqer\Barcode\BarcodeGeneratorPNG();
 
+		$writer = new Endroid\QrCode\Writer\PngWriter();
+		$qrCode = Endroid\QrCode\QrCode::create($data['item']->barcode);
+		$result = $writer->write($qrCode);
+		$result->saveToFile('uploads/qrcode/' . $data['item']->barcode . '.png');
+
 		$this->template->load('template', 'product/item/barcode_qrcode', $data);
+	}
+
+	public function qrcode()
+	{
+		$writer = new Endroid\QrCode\Writer\PngWriter();
+		$qrCode = Endroid\QrCode\QrCode::create('Halo nama say gian nurwana');
+		$result = $writer->write($qrCode);
+
+		header('Content-Type: ' . $result->getMimeType());
+		echo $result->getString();
 	}
 
 	private function config_upload()
